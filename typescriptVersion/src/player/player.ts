@@ -58,7 +58,7 @@ class Player {
         this.fleetSpec.set["battleship"] = 6;
     }
 
-    // check if this type of ship is supported and any are left to be placed
+    // check if this type of ship is supported and if any are left to be placed
     isShipAvailable(ship: string): ship is shipsAvailable {
         return this.fleetLeftToPlace.includes(ship);
     }
@@ -179,10 +179,20 @@ class Player {
     // player species target point
     // returns true if an enemy ship hit, false if no ship hit
     // map of enemy get set to "sea" if miss, "ship" if hit
-    playerShoot( targetPoint : Point){
-        seaX = targetPoint.x;
-        seaY = targetPoint.y;
+    playerShoot() {
+        console.log(" shoot at oppponent")
+    }
 
+
+    // function to allow a player to BE SHOT AT 
+    // returns true if a ship hit, false if no ship hit
+
+    playerGetsShot( targetPoint : Point) {
+        if ( (targetPoint.y >= 0) && (targetPoint.y < this.mySea.height){
+            if ( (targetPoint.x >= 0) && (targetPoint.x < this.mySea.width){
+                return (this.mySea.mapOfSea[targetPoint.y][targetPoint.x].type === "ship")
+            }
+        }        
     }
  
     
